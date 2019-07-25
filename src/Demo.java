@@ -1,19 +1,11 @@
 
-public class Demo {
-
-		public static void main (String args[]){
-			System.out.println();
-			for (int a = 1 ;  a <=100 ; a++){
-				int b = 2;
-				while(b < a){
-					if (a % b == 0){
-						break;
-					}
-					b++;
-				}
-				if(a == b){
-					System.out.println(b);
-				}
-			}
+public class Demo{
+	public static void main(String[]args) {
+		int i=9;
+		if(i==4) {
+			System.out.println("0");
+		}else if(i>6){
+			System.out.println("1");
 		}
+	}
 }
