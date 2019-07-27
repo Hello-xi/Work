@@ -1,0 +1,199 @@
+/*
+设置java环境
+*/
+update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_201/bin/java 1 update-alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_201/bin/javac 1 update-alternatives --set java /opt/jdk1.8.0_201/bin/java update-alternatives --set javac /opt/jdk1.8.0_201/bin/javac
+/*
+下载火狐中文语言包
+*/
+apt -y install firefox-esr-l10n-zh-cn
+/*
+Eclipse目录
+*/
+cd /opt/eclipse/eclipse
+./eclipse//ruan show
+/*
+bt软件
+*/
+#wget http://cf1.vuze.com/files/VuzeInstaller.tar.bz2
+#tar -xvf VuzeInstaller.tar.bz2
+#cd vuze
+#./azureus
+/*
+RPM转换成deb格式
+*/
+1. 先安装 alien 和 fakeroot 这两个工具，其中前者可以将 rpm 包转换为 deb 包。安装命令为：
+sudo apt-get install alien fakeroot
+2. 将需要安装的 rpm 包下载备用，假设为 package.rpm。
+3. 使用 alien 将 rpm 包转换为 deb 包：
+fakeroot alien package.rpm
+4. 一旦转换成功，我们可以即刻使用以下指令来安装：
+sudo dpkg -i package.deb
+方法二：
+1.CODE:
+sudo apt-get install rpm alien
+2.CODE:
+alien -d package.rpm
+3.CODE:
+sudo dpkg -i package.deb
+/*
+火狐安装flash
+*/
+其次是firefox 的 flash 插件 安装步骤是 将下载好的flash 安装文件解压 复制里边的libflashplayer.so 文件 复制到 /usr/lib/mozilla/plugins 重启浏览器 入伙还不行的话 就去/usr/lib/firefox-esr/browser文件夹下创建plugins 文件夹 将libflashplayer.so复制进来 就可以了 
+/*
+vim使用
+*/
+ vim的基本使用方法
+头记：vim作为被大多数程序员所推崇的编辑器，是源于它的自由灵活以及令人舒服的输入模式，但对于新手来说无疑是个噩梦（需要记太多的命令），
+而作为使用了vim有一段时间的我来说，总结下常用的命令，以备新手快速进入vim，感受它的强大以及令人着迷的处理方式。
+以下只介绍常用的使用方式，对于繁重的概念以及高难度的操作留待大家以后的兴趣去探索。
+初次用vi/vim打开文件既可以使用以下命令:
+移动命令：
+1.hjkl 四个按键对应左下上右，这四个按键是用来移动光标（同上下左右方向键），可以和数字组合使用如：nh （向左移动n步），其它方向同样。
+2.wb 这两个按键是我最常使用的，分别代表向右向左移动一个单词的长度。
+3.gg 和 G 其中gg是移动到第一行，G移动到最后一行。
+4.nG 移动到第n行。
+还有很多的移动命令如：H L ...
+插入文本：
+1.iao 这三个按键对应这三种不同的插入方式，i在光标前插入（默认光标为方块），a则是在光标后插入，o为新起一行并进入插入模式.还有其它的如：O向光标的上面插入新行并进入插入模式.
+按esc可以进行移动命令
+选择文本:
+1.v 按v进入选取模式从当前光标开始，之后移动光标即可进行选取。
+2.V 按V直接选取一行，后续步骤同上。
+3.ctrl + v 这个可以说是vi中非常好用的选取器了，可以进行块选择,后续同样可以使用hjkl或者wb来进行块的选取。
+文本的剪贴，复制，粘贴以及撤销：
+1.对上边选择的文本可以使用d剪贴，y复制。
+2.dd 剪贴当前行也可以使用ndd剪贴从当前开始的n行。
+3.yy 复制当前行，也可以使用nyy 同上。
+4.p 粘贴剪贴的内容或者复制的内容，一般会保留原格式粘贴，即用dd或者yy则粘贴到下一行，进行文本局部选取粘贴会在当前行。
+5.P 向上粘贴，格式同上。
+6. u 撤销上一次操作。ctrl + r 与u操作相反。
+相对高级一点的复制和粘贴：（但是非常有用）
+vi/vim中内置有很多的寄存器，供分别使用.
+1. "ayy 保存当前行在a寄存器中，"anyy 复制n行到a寄存器或者"any 按回车。寄存器从a-z,0-9非常之多。
+2. +这两个寄存器为系统剪贴板，可以复制内容到剪贴板供外边使用，使用同上如:"+yy。
+3."ap 粘贴a寄存器中的内容，其它的也一样。
+搜索模式:
+1. / 向下搜索 如： /test 搜索test 可以使用vim中的正则,使用n移动到下一个搜索到的词，N移动到上一个搜索到的词。
+2. ? 同上，只是使用n是向上搜索，N向下。
+加入书签：
+1.m 如：mk在当前行加入标签k 使用`k（注意是esc下的`）跳到k标记处。
+
+命令模式:
+可以说命令模式是vim的核心了，至少我现在使用时就是这种感觉。
+(后续匹配文本都可以使用vim中的正则进行选定，这里不介绍,以免增加使用难度，不过建议好好了解下正则)
+1. :%g/需要匹配的内容/d 这条命令删除整个文件中匹配到内容的所有行，其中%号代表的是进行全文本匹配,也可以使用{n,m}g//d表示从n开始到m结束，n与m都可以省略，默认即从当前行开始。
+2. :s/需要匹配的文本/替换的文本/g 这条命令用来进行替换匹配到的文本,方法同上。
+3. :s/\(匹配到的文本\)/插入的内容\0/g 这条命令与前边命令不同之处在于用()把需要匹配的文本括起来，后边则可以使用\0进行还原，实现插入操作，如分别括起来多个，则可以使用\1以此类推。
+4. :!cd /home 这条命令的意思是调用linux系统下bash中的cd命令，并切换到家目录，可以使用:!ls -l显示当前工作目录下的文件信息。
+5. :reg 查看vim中寄存器的内容，可以随时查看寄存器中的内容。
+5 :h 调出帮助文件，非常有用。
+文本文件的保存:
+1. :w 修改的内容写入原文件(vim编辑时会生成.swap临时文件)。
+2. ：q 退出而不保存。
+3. ：wq 保存并退出。
+4. ：w! 强制写入，退出命令也可以使用。
+5. :x 如果有改变则写入，否则退出。（最常使用）
+vi多屏：
+1. ：sp 以横屏的模式显示另外一个文件。:vsp 以竖屏的方式显示。：ex 切换到其它文件当前文件消失。
+2. ctrl+w 在两个文件切换。
+vi合并其它文件：
+1. ：r path 把path文件追加到光标后。
+附上vim替换操作以及正则：
+一、正规表达式:
+替换命令: s///g 下边的命令可以组合起来使用
+无 : 只对指定范围内的第一个匹配项进行替换
+g : 对指定范围内的所有匹配项进行替换
+c : 在替换前请求用户确认
+e : 忽略执行过程中的错误
+二、元字符:
+. : 匹配任意一个字符
+[abc] : 匹配方括号中的任意一个字符。可以使用-表示字符范围。
+[^abc] : 在方括号内开头使用^符号，表示匹配除方括号中字符之外的任意字符。
+\d : 匹配阿拉伯数字，等同于[0-9]
+\D : 匹配阿拉伯数字之外的任意字符，等同于[^0-9]
+\x : 匹配十六进制数字，等同于[0-9A-Fa-f]
+\X : 匹配十六进制数字之外的任意字符，等同于[^[0-9A-Fa-f]
+\w : 匹配单词字母，等同于[0-9A-Za-z]
+\W : 匹配单词字母之外的任意字符，等同于[^0-9A-Za-z]
+\t : 匹配<TAB>字符
+\s : 匹配空白字符，等同于[ \t]
+\S : 匹配非空白字符，等同于[^ \t]
+*特别注意:如果需要查找元字符则需要\跳出
+表示数量的元字符
+* : 匹配0-任意个
+\+ : 匹配1-任意个
+\? : 匹配0-1个
+\{n,m} : 匹配n-m个
+\{n} : 匹配n个
+\{n,} : 匹配n-任意个
+\{,m} : 匹配0-m个
+表示位置的符号
+$ : 匹配行尾
+^ : 匹配行首
+\< : 匹配单词词首
+\> : 匹配单词词尾
+/*
+Github使用方法
+*/
+apt install git//安装git
+ssh-keygen -t rsa -C "your_email@youremail.com"//your_email是你的email,然后把key放到自己的sshkey中
+ssh -T git@github.com//检测是否配置成功
+git config --global user.name "your name" //配置用户名
+git config --global user.email "your email" //配置email
+git init//利用本地库上传
+第二步： 创建一个本地仓库origin，使用命令 “git remote add origin git@github.com:yourName/yourRepo.git”
+youname是你的GitHub的用户名，yourRepo是你要上传到GitHub的仓库，这是你再GitHub上添加的仓库。
+第三步： 比如你要添加一个文件xxx到本地仓库，使用命令 “git add xxx”，可以使用“git add .”自动判断添加哪些文件
+然后把这个添加提交到本地的仓库，使用命令 ”git commit -m ”说明这次的提交“ “
+最后把本地仓库origin提交到远程的GitHub仓库，使用命令 ”git push origin master“
+从GitHub克隆项目到本地
+
+第一步： 到GitHub的某个仓库，然后复制右边的有个“HTTPS clone url”
+
+第二步： 回到要存放的目录下，使用命令 "git clone https://github.com/chenguolin/scrapy.git"，红色的url只是一个例子
+
+第三步： 如果本地的版本不是最新的，可以使用命令 “git fetch origin”，origin是本地仓库
+
+第四步： 把更新的内容合并到本地分支，可以使用命令 “git merge origin/master”
+
+
+如果你不想手动去合并，那么你可以使用： git pull <本地仓库> master // 这个命令可以拉去最新版本并自动合并
+每次push都要验证的话
+git remote -v //要是是http链接就进行下面操作
+git remote rm origin //移出旧的http的origin
+git remote add origin git@github.com:自己的git//添加新的origin 改成ssh类型的
+/*终端清屏*/
+完全清屏:clear 或 reset-内容多时速度较慢 或 printf "\033c"-速度最快
+保留上面的内容: ctrl+L
+/*google-chrome*/
+对于谷歌Chrome32位版本，使用如下链接：
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_i386.deb
+
+对于64位版本可以使用如下链接下载：
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+下载完后，运行如下命令安装。
+#sudo dpkg -i google-chrome*;
+如果有依赖关系使用命令
+#sudo apt-get -f install
+然后，就可以去搜索使用了。
+
+若点击运行，界面没有加载出来。
+打开opt/chrome/google-chrome
+在最后一行exec -a "$0" "$HERE/chrome" "$@"最后加上 --no-sandbox $HOME
+/*更新系统*/
+apt-get dist-upgrade
+/*chrome安装*/
+对于谷歌Chrome32位版本，使用如下链接：
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_i386.deb
+对于64位版本可以使用如下链接下载：
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+下载完后，运行如下命令安装。
+#sudo dpkg -i google-chrome*;
+如果有依赖关系使用命令
+#sudo apt-get -f install
+然后，就可以去搜索使用了。
+若点击运行，界面没有加载出来。
+打开opt/chrome/google-chrome
+在最后一行exec -a "$0" "$HERE/chrome" "$@"最后加上 --no-sandbox $HOME
+
