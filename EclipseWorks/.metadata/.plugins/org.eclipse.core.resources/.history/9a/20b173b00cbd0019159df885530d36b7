@@ -1,0 +1,5 @@
+package cn.itcast.twoOne;
+
+public abstract class BasisTeacher/*基础老师*/ extends Teacher {
+	public abstract void speak();
+}

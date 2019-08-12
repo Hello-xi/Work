@@ -1,0 +1,22 @@
+package cn.itcast.one;
+
+public class Employee {
+	private String name;
+	private String ID;
+	private double wage;
+	public Employee() {
+		super();
+	}
+	public void setName(String name) {
+		this.name=name;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setID(String ID) {
+		this.ID=ID;
+	}
+	public String getID() {
+		return ID;
+	}
+}

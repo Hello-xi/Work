@@ -1,0 +1,11 @@
+
+public class Demo{
+	public static void main(String[]args) {
+		int i=9;
+		if(i==4) {
+			System.out.println("0");
+		}else if(i>6){
+			System.out.println("1");
+		}
+	}
+}

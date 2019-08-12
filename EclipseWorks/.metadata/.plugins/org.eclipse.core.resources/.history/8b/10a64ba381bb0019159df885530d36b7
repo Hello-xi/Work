@@ -1,0 +1,10 @@
+package cn.itcast.two;
+
+public class elephnt {
+	private String name;
+	private int age;
+	private char sex;
+	public elephnt() {
+		super();
+	}
+}

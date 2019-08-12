@@ -1,0 +1,10 @@
+package cn.itcast.two;
+
+public class elephantTest {
+
+	public static void main(String[] args) {
+		elephant e=new elephant();
+		System.out.println(e.getName()+"/t"+e.getAge()+"/t"+e.getSex());
+	}
+
+}

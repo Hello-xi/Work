@@ -1,0 +1,8 @@
+package cn.itcast.twoOne;
+
+public class EmployedTeacher extends Teacher {
+	public void speak() {
+		System.out.println(super.getName()+"..."+super.getAge()+"----"+"再讲"+super.getPrelection());
+	}
+}
+s

@@ -1,0 +1,9 @@
+package cn.itcast.one;
+
+public class test {
+	public static void main(String[]args) {
+		PM p=new PM();
+		p.setName("测试one");p.setID("项目经理one");p.setWage(3500);p.setBonus(100);
+		p.work();
+	}
+}
